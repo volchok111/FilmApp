@@ -2,10 +2,22 @@ package com.example.films
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.films.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setupActionBarWithNavController(findNavController(R.id.mainNavHost))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val bind = findNavController(R.id.mainNavHost)
+        return super.onSupportNavigateUp() || bind.navigateUp()
     }
 }

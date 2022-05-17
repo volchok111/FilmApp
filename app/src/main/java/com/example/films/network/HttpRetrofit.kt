@@ -1,4 +1,4 @@
-package com.example.films.api
+package com.example.films.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -7,20 +7,23 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-/* Creating a Retrofit instance. */
-object RetrofitInstance {
-    private val retrofit by lazy {
+object HttpRetrofit {
+    private var INSTANCE: Retrofit? = null
+    private const val BASE_URL = "https://api.themoviedb.org/"
+
+    private fun getRetrofit(): Retrofit{
+        return INSTANCE ?:
         Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/")
+            .baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(getHttpClient())
             .build()
+
     }
 
-    /* Creating a http client with logging interceptor. */
-    private fun getHttpClient(): OkHttpClient{
-        val okHttpClientBuilder =OkHttpClient.Builder()
+    private fun getHttpClient(): OkHttpClient {
+        val okHttpClientBuilder = OkHttpClient.Builder()
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         okHttpClientBuilder.addInterceptor(logging)
@@ -31,8 +34,7 @@ object RetrofitInstance {
             .build()
     }
 
-    fun getHttpApi(): ApiService{
-        return retrofit.create(ApiService::class.java)
+    fun getHttpApi(): HttpApi{
+        return getRetrofit().create(HttpApi::class.java)
     }
-
 }

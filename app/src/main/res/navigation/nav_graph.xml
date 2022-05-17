@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/firstFragment"
         android:name="com.example.films.ui.first.FirstFragment"
-        android:label="fragment_first"
+        android:label="Movies App"
         tools:layout="@layout/fragment_first" >
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
@@ -17,19 +17,10 @@
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.example.films.ui.second.SecondFragment"
-        android:label="fragment_second"
+        android:label=""
         tools:layout="@layout/fragment_second" >
         <action
             android:id="@+id/action_secondFragment_to_firstFragment"
-            app:destination="@id/firstFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.films.ui.splash.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_firstFragment"
             app:destination="@id/firstFragment" />
     </fragment>
 </navigation>

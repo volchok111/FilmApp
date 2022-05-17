@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.first.FirstFragment">
+    tools:context=".ui.first.FirstFragment"
+    android:background="#f6f0ea">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,21 +14,12 @@
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Films"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="5dp"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/recycler_view"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
